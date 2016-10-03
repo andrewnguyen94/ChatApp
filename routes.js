@@ -8,6 +8,7 @@ var gravatar = require('gravatar');
 var login = require('config/login');
 var register = require('config/register');
 var user_profile = require('config/user_profile');
+var user_profile_profile = require('config/user_profile_profile');
 
 module.exports = function(app){
 	app.get('/', function(req, res){
@@ -42,7 +43,15 @@ module.exports = function(app){
 		user_profile.user_profile(user_target_name, function(found){
 			res.json(found);
 		})
-	})
+	});
 
+	app.post('/user_profile_profile', function(req, res){
+		var user_target_name = req.body.user_target_name;
+		var username = req.body.username;
+
+		user_profile_profile.user_profile_profile(user_target_name, username, function(found){
+			res.json(found);
+		})
+	})
 
 }
